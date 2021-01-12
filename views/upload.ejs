@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  background-color: #111;
+  padding-top: 20px;
+  list-style:none;
+}
+.dropdown-toggle::after {
+    display:none;
+}
+.sidenav a {
+  padding: 0px 0px 0px 0px;   /* top right bottom left */
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  padding-bottom:10px;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 15px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.jumbotron {
+    margin-left: 160px;
+    height: 100px;
+    background: teal;
+} /* pl-0 means padding left 0 */ /* d-none means to display none of d-md-inline*/ /* d-md-inline adds a container like placeholder to display text*/
+
+.card {
+      margin-top:17%;
+      margin-left:26%;
+  }
+
+</style>
+</head>
+<body> 
+
+
+ <div class="sidenav">
+  <a class="navbar-brand"> <img class="gif" src="gifs/tiger.gif"></a>
+  <li class="nav-item nav-item-sidebar dropdown-toggle"style="margin-bottom:-15px">
+    <a class="nav-link" href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+      <i class="fa fa-book fa-fw sidebar-icon"></i>
+      <span class="sidebar-link"><%= name %></span>
+    
+    </a>
+    <ul class="collapse list-unstyled" id="pageSubmenu">
+
+      <li class="nav-item">
+        <a href="#Bier1" class="nav-link sidebar-dropdown-nav-link">
+          <i class="fa fa-book fa-fw sidebar-icon"></i>
+          <span class="sidebar-link">Profile</span>
+          
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#Bier2" class="nav-link sidebar-dropdown-nav-link">
+          <i class="fa fa-book fa-fw sidebar-icon"></i>
+          <span class="sidebar-link">Logout</span>
+         
+        </a>
+      </li>
+    </ul>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link pl-0" style="margin-top:15px" href="#"><i class="fa fa-book fa-fw"></i> <span class="d-none d-md-inline">Membership</span></a> 
+  </li>
+  <li class="nav-item">
+    <a class="nav-link pl-0"  href="#"><i class="fa fa-cog fa-fw"></i> <span class="d-none d-md-inline">Schedule</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link pl-0"  href="#"><i class="fa fa-heart codeply fa-fw"></i> <span class="d-none d-md-inline">Events</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link pl-0"   href="#"><i class="fa fa-star codeply fa-fw"></i> <span class="d-none d-md-inline">Comments</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link pl-0"  href="#"><i class="fa fa-star fa-fw"></i> <span class="d-none d-md-inline">Settings</span></a>
+  </li>                         
+              
+</div>
+
+<div class="jumbotron main">
+           
+   <h1>Hello, world!</h1>
+   <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+</div>
+
+
+ <body>
+ <div class="container">
+     <div class="row">
+         <div class="col-md-6 card">
+             <h1 class="text-center display-4 my-4">Mongo File Uploads</h1>
+             <form action="/upload" method="POST" enctype="multipart/form-data">
+              
+              <div class="form-group"> 
+                <input type="hidden" name="name" id='name' class="form-control" value = '<%= name %>'>
+              </div>
+              
+              <div class="form-group">    
+                <label for="file">Profile Image</label>
+                <input type="file" name="myimage" id='file' class="form-control">
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Save User</button>
+              </div>        
+             </form>
+         </div>
+     </div>
+ </div>
+
+
+
+
+
+   
+</body>
+</html> 
+
+

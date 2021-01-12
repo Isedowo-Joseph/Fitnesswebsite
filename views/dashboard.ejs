@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  background-color: #111;
+  padding-top: 20px;
+  list-style:none;
+}
+.dropdown-toggle::after {
+    display:none;
+}
+.sidenav a {
+  padding: 0px 0px 0px 0px;   /* top right bottom left */
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  padding-bottom:10px;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 15px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.jumbotron {
+    margin-left: 160px;
+    height: 100px;
+    background: teal;
+} /* pl-0 means padding left 0 */ /* d-none means to display none of d-md-inline*/ /* d-md-inline adds a container like placeholder to display text*/
+
+.card-adjust1 {
+    margin-top:-2%;
+    margin-left:-1%;
+    height:16rem;
+    max-width:220px;  
+    padding-top:10px; 
+  }
+.card-adjust2 {
+    margin-top:-16.9%;
+    margin-left:890px;
+    height:51rem;
+    max-width:600px;  
+    padding-top:50px; 
+}
+.btn {
+  border: 0.4px solid gray;
+  background-color:	#F0F0F0;
+  color: black;
+  padding: 14px 28px;
+  font-size: 16.5px;
+  cursor:context-menu;
+  border-radius: 0 !important;
+  
+}
+.default:hover {
+ border-color: green;
+ background-color:green;
+}
+.avatar-big {
+  height:150px;
+  width:150px;
+}
+.avatar-img {
+width: 100%;
+height: 100%;
+-o-object-fit: cover;
+object-fit: cover;
+
+}
+.mydiv {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 15px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+  background-color:#111;
+  height:20px;
+  margin-bottom:30px;
+}
+
+
+</style>
+<body> 
+
+
+ <div class="sidenav">
+  <a class="navbar-brand"> <img class="gif" src="gifs/tiger.gif"></a>
+  <li class="nav-item nav-item-sidebar dropdown-toggle"style="margin-bottom:-15px">
+    <a class="nav-link" href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+      <i class="fa fa-book fa-fw sidebar-icon"></i>
+      <span class="sidebar-link"><%= name %></span>
+      
+    
+    </a>
+    <ul class="collapse list-unstyled" id="pageSubmenu">
+
+      <li class="nav-item">
+        <a href="/dashboard" class="nav-link sidebar-dropdown-nav-link">
+          <i class="fa fa-book fa-fw sidebar-icon"></i>
+          <span class="sidebar-link">Profile</span>
+          
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/users/logout" class="nav-link sidebar-dropdown-nav-link">
+          <i class="fa fa-book fa-fw sidebar-icon"></i>
+          <span class="sidebar-link">Logout</span>
+         
+        </a>
+      </li>
+    </ul>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link pl-0" style="margin-top:15px" href="#"><i class="fa fa-book fa-fw"></i> <span class="d-none d-md-inline">Membership</span></a> 
+  </li>
+  <li class="nav-item">
+    <a class="nav-link pl-0"  href="#"><i class="fa fa-cog fa-fw"></i> <span class="d-none d-md-inline">Schedule</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link pl-0"  href="#"><i class="fa fa-heart codeply fa-fw"></i> <span class="d-none d-md-inline">Events</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link pl-0"   href="#"><i class="fa fa-star codeply fa-fw"></i> <span class="d-none d-md-inline">Comments</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link pl-0"  href="#"><i class="fa fa-star fa-fw"></i> <span class="d-none d-md-inline">Settings</span></a>
+  </li>                         
+              
+</div>
+
+<div class="mydiv">
+
+</div>
+
+
+ <body>
+ <div class="container">
+     <div class="row">
+         <div class="col-md-6 card card-adjust1" style="background-color:gainsboro">
+             <div class="card-body"> 
+              <% if (img == "nothing") { %>
+                <div class="avatar-big">
+                <img class="rounded-circle avatar-img" src="images/blankimg.png">   
+                </div>
+              <% } 
+              else if (img == "displayed") { %>
+                <% file.forEach(function(file) { %> 
+            
+                    <div class="avatar-big"> 
+                        <img class="rounded-circle avatar-img" src="data:file/<%=file.img.contentType%>;base64, 
+                             <%=file.img.image.toString('base64')%>"> 
+                    </div> 
+        
+                <% }) %> 
+                
+              <% } %>
+            </div>
+             <form action="/upload" method="POST" enctype="multipart/form-data" style="margin-top:-10px">
+              
+              <div class="form-group"> 
+                <input type="hidden" name="name" id='name' class="form-control" value = '<%= name %>'>
+              </div>
+              
+              <div class="form-group">    
+                <input style="max-width:104px" style=" padding:0" type="file" name="myimage" id='file'>
+              
+              
+                <button type="submit" class="btn default" style=" padding:3px" >Upload</button>
+              </div>        
+             </form>      
+         </div>
+     </div>
+ </div>
+
+
+ 
+  <form action="/appointments" method="POST" enctype="application/json">
+  <div class="card card-adjust2 ">
+    <div class="card-body">
+    <h1 style="margin-bottom:50px"   > Appointment Bookings </h1>
+   <div class="form-group" style="width:200px">
+    <p style="margin-bottom:-29px">appointmentDate:</p>
+    <input placeholder="Selected date" type="date" id="date-picker-example" class="form-control datepicker" style="margin-left:150px">
+   </div>
+   <div class="form-group" style="width:200px">
+    <p style="margin-bottom:-29px">name:</p>
+    <input placeholder="Selected date" type="text" id="date-picker-example" class="form-control datepicker" style="margin-left:150px">
+   </div>
+   <p style="margin-bottom:-29px">email:</p>
+   <div class="form-group" style="width:200px">
+    <input placeholder="Selected date" type="text" id="date-picker-example" class="form-control datepicker" style="margin-left:150px">
+   </div>
+  </div>
+  </form>
+
+
+
+<script>
+// Data Picker Initialization
+$('.datepicker').pickadate();
+</script>
+</body>
+
+
+</body>
+
+</html> 
+
+
